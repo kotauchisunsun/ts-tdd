@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as supertest from "supertest";
 
-describe("expressのcontroller層のテスト", () => {
+describe("expressのcontroller層のテスト その1", () => {
   it("getの場合", async () => {
     const app = express();
     app.get(
@@ -22,10 +22,12 @@ describe("expressのcontroller層のテスト", () => {
     expect(response.status).toBe(200);
     expect(response.text).toEqual("hello");
   });
+});
 
+describe("expressのcontroller層のテスト その2", () => {
   it("postの場合", async () => {
-		const app = express();
-		app.use(express.json());
+    const app = express();
+    app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
 
     app.post(
@@ -41,7 +43,7 @@ describe("expressのcontroller層のテスト", () => {
     );
 
     const request = supertest(app);
-    const response = await request.post("/").send({value : "text"});
+    const response = await request.post("/").send({ value: "text" });
 
     expect(response.status).toBe(200);
     expect(response.text).toEqual("text");
